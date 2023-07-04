@@ -1,0 +1,28 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotels</title>
+    <link ref="stylesheet" href="{%static 'mystyle.css' %}">
+</head>
+<body>
+    <h2><center>Add Your Hotel!</center></h2>
+    {% for i in data %}
+    <form method="post"  action="{% url 'update' id=i.id %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>Hotel Name : </label>
+        <input type="text"  name="hotel_name" value="{{i.name}}"><br><br>
+        <label>Hotel Description : </label>
+        <input type="text" name="hotel_description" value="{{i.desc}}"> <br><br>
+        <label>Booking Price: </label>
+        <input type="text"  name="booking_price" value="{{i.price}}"><br><br>
+        <input type="file" name="image">
+        <input type="submit" id="btn" value="Submit">   
+       
+    </form>
+    {% endfor %}
+</body>
+</html>
